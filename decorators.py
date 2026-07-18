@@ -1,9 +1,9 @@
 import time
 
 def time_taken(base_fn):
-    def enhance_fn():
+    def enhance_fn(*args, **kwargs):
         start_time= time.time()
-        base_fn()
+        base_fn(*args, **kwargs)
         end_time= time.time()
         total_time= end_time-start_time
         print(f"Time taken: {total_time} seconds")
@@ -11,10 +11,10 @@ def time_taken(base_fn):
     return enhance_fn 
 
 @time_taken
-def tea():
-    print("Preparing Tea....")
-    time.sleep(1)
-    print("Tea is ready to drink!..")
+def tea(tea_type, steep_time):
+    print(f"Preparing {tea_type} Tea....")
+    time.sleep(steep_time)
+    print(f"{tea_type} Tea is ready to drink!..")
  
 @time_taken  
 def coffee():
@@ -23,7 +23,7 @@ def coffee():
     print("Coffee is ready to drink!..")
 
 def main():
-    tea()
+    tea("green", 2)
     coffee()
     
 if __name__ == "__main__":
